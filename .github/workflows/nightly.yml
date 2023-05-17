@@ -67,25 +67,25 @@ jobs:
         with:
           name: "polishedcrystal-faithful-nortc"
           path: "./build"
-        - id: download-polisheddebug
-        name: "Download polisheddebug"
-        uses: actions/download-artifact@v3
-        with:
+      - id: download-polisheddebug
+       name: "Download polisheddebug"
+       uses: actions/download-artifact@v3
+       with:
           name: "polisheddebug"
           path: "./build"
-        - id: download-polisheddebug-faithful
+      - id: download-polisheddebug-faithful
         name: "Download polisheddebug-faithful"
         uses: actions/download-artifact@v3
         with:
           name: "polisheddebug-nortc"
           path: "./build"
-        - id: download-polisheddebug-nortc
+      - id: download-polisheddebug-nortc
         name: "Download polisheddebug-nortc"
         uses: actions/download-artifact@v3
         with:
           name: "polisheddebug-nortc"
           path: "./build"
-        - id: download-polisheddebug-faithful-nortc
+      - id: download-polisheddebug-faithful-nortc
         name: "Download polisheddebug-faithful-nortc"
         uses: actions/download-artifact@v3
         with:

@@ -107,7 +107,7 @@ jobs:
       # DELETE OLD RELEASE
       - name: Delete old release
         id: delete_release
-        uses: cb80@latest
+        uses: cb80/delrel@latest
         with:
           tag: ${{ env.NIGHTLY_TAG }}
           

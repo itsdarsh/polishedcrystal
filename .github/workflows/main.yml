@@ -42,13 +42,13 @@ jobs:
         make bsp
         mv polishedcrystal-3.0.0-beta.bsp build/polishedcrystal-savepatch-3.0.0-beta.bsp
         popd
-    - name: Delete old release
-      id: delete_release
-      uses: jagger27/delete-release@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v3.0.0-beta-nightly
+    # - name: Delete old release
+      # id: delete_release
+      # uses: jagger27/delete-release@master
+      # env:
+        # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # with:
+        # tag_name: v3.0.0-beta-nightly
     - name: Advance nightly tag to master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -79,7 +79,7 @@ jobs:
         prerelease: true
     - name: Upload ROM
       id: upload
-      uses: actions/upload-release-asset@v1.0.1
+      uses: actions/upload-release-asset@v1.1.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -89,7 +89,7 @@ jobs:
         asset_content_type: application/octet-stream
     - name: Upload SYM
       id: upload-sym
-      uses: actions/upload-release-asset@v1.0.1
+      uses: actions/upload-release-asset@v1.1.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -99,7 +99,7 @@ jobs:
         asset_content_type: text/plain
     - name: Upload faithful ROM
       id: upload-faithful
-      uses: actions/upload-release-asset@v1.0.1
+      uses: actions/upload-release-asset@v1.1.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -109,7 +109,7 @@ jobs:
         asset_content_type: application/octet-stream
     - name: Upload faithful SYM
       id: upload-faithful-sym
-      uses: actions/upload-release-asset@v1.0.1
+      uses: actions/upload-release-asset@v1.1.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -119,7 +119,7 @@ jobs:
         asset_content_type: text/plain
     - name: Upload debug ROM
       id: upload-debug
-      uses: actions/upload-release-asset@v1.0.1
+      uses: actions/upload-release-asset@v1.1.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -129,7 +129,7 @@ jobs:
         asset_content_type: application/octet-stream
     - name: Upload debug SYM
       id: upload-debug-sym
-      uses: actions/upload-release-asset@v1.0.1
+      uses: actions/upload-release-asset@v1.1.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -139,7 +139,7 @@ jobs:
         asset_content_type: text/plain
     - name: Upload faithful debug ROM
       id: upload-faithful-debug
-      uses: actions/upload-release-asset@v1.0.1
+      uses: actions/upload-release-asset@v1.1.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -149,7 +149,7 @@ jobs:
         asset_content_type: application/octet-stream
     - name: Upload faithful debug SYM
       id: upload-faithful-debug-sym
-      uses: actions/upload-release-asset@v1.0.1
+      uses: actions/upload-release-asset@v1.1.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -159,7 +159,7 @@ jobs:
         asset_content_type: text/plain
     - name: Upload BSP
       id: upload-bsp
-      uses: actions/upload-release-asset@v1.0.1
+      uses: actions/upload-release-asset@v1.1.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:

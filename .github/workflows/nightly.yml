@@ -81,10 +81,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pushd polishedcrystal
           git tag ${{ env.NIGHTLY_TAG }} -f
           git push --tags -f "https://itsdarsh:$GITHUB_TOKEN@github.com/itsdarsh/polishedcrystal.git"
-          popd
       # CREATE NEW RELEASE
       - name: Create new release
         id: create_release

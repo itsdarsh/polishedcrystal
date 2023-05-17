@@ -26,11 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      # SET ENVIRONMENT VARIABLES
       - id: set-env-var
         name: "Set environment variables"
         run: |
           echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_ENV
+
       # INSTALL DEPENDENCIES
       - id: apt-get-depends
         name: "Install dependencies"

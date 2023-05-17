@@ -76,13 +76,13 @@ jobs:
           name: "polishedcrystal-savepatch"
       
       # DELETE OLD RELEASE
-      - name: Delete old release
-        id: delete_release
-        uses: jagger27/delete-release@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ env.NIGHTLY_TAG }}
+      #- name: Delete old release
+      #  id: delete_release
+      #  uses: jagger27/delete-release@master
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #  with:
+      #    tag_name: ${{ env.NIGHTLY_TAG }}
       - name: Advance nightly tag to master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

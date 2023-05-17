@@ -36,43 +36,43 @@ jobs:
         name: "Install dependencies"
         run: |
           sudo apt-get install bison gcc git make python2 -y;
-      
+
+      # CHECKOUT REPOSITORY
+      - id: checkout-polishedcrystal
+        name: "Checkout itsdarsh/polishedcrystal"
+        uses: actions/checkout@v3          
+
       # DOWNLOAD ALL BUILD ARTIFACTS
       - id: download-polishedcrystal
         name: "Download polishedcrystal"
         uses: actions/download-artifact@v3
         with:
           name: "polishedcrystal"
-          path: "build"
+          path: "./build"
       - id: download-polishedcrystal-faithful
         name: "Download polishedcrystal-faithful"
         uses: actions/download-artifact@v3
         with:
           name: "polishedcrystal-faithful"
-          path: "build"
+          path: "./build"
       - id: download-polisheddebug
         name: "Download polisheddebug"
         uses: actions/download-artifact@v3
         with:
           name: "polisheddebug"
-          path: "build"
+          path: "./build"
       - id: download-polisheddebug-faithful
         name: "Download polisheddebug-faithful"
         uses: actions/download-artifact@v3
         with:
           name: "polisheddebug-faithful"
-          path: "build"
+          path: "./build"
       - id: download-polishedcrystal-savepatch
         name: "Download polishedcrystal-savepatch"
         uses: actions/download-artifact@v3
         with:
           name: "polishedcrystal-savepatch"
-          path: "build"
-
-      # CHECKOUT REPOSITORY
-      - id: checkout-polishedcrystal
-        name: "Checkout itsdarsh/polishedcrystal"
-        uses: actions/checkout@v3          
+          path: "./build"
 
       # DELETE OLD RELEASE
       - name: Delete old release
@@ -90,8 +90,7 @@ jobs:
         run: |
           git tag ${{ env.NIGHTLY_TAG }} -f
           git push --tags -f "https://itsdarsh:$GITHUB_TOKEN@github.com/itsdarsh/polishedcrystal.git"
-          cd ../..
-          dir
+
       # CREATE NEW RELEASE
       - name: Create new release
         id: create_release

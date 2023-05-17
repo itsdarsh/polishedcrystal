@@ -13,19 +13,25 @@ env:
   NIGHTLY_NAME: "3.0.0 beta nightly"
   NIGHTLY_BODY: |
     This is the current Polished Crystal 3.0.0 *beta* release. The assets all have an 8-character "commit hash" at the end to identify the exact code they're built from.
+
     The **.gbc** assets are ROMs. If you just want to play the game, download one (regular or `-faithful`) and load it in [BGB](https://bgb.bircd.org/), [mGBA](https://mgba.io/), [Gambatte](https://github.com/sinamas/gambatte), or another accurate Game Boy Color emulator. (***Do not use VBA*** or VBA-M.)
+
     The **.sym** assets are "symbol files". They're useful for debugging, or for [discovering cheat codes](https://github.com/pret/pokecrystal/wiki/Discovering-GameShark-cheat-codes), although cheats are *not* officially supported and may cause bugs or crashes. (Do ***not*** ask the developers for cheat codes.)
+
     The **.bsp** asset is a [BSP](https://github.com/aaaaaa123456789/bsp) save file patch in case you need to upgrade a save file from an older 3.0.0 beta build, using a patcher like the one for [Pokémon Prism](http://pokemonprism.com/patcher.html).
+
     The **polisheddebug** assets are ROMs and symbol files with extra features to help debug the game. Do ***not*** download these to just play with; use them to help the developers diagnose and fix bugs, or create new features.
+
 jobs:
   build:
     name: "Nightly"
-    uses: itsdarsh/polishedcrystal/.github/workflows/build.yml@master
+    uses: Rangi42/polishedcrystal/.github/workflows/build.yml@master
   release:
     name: "Nightly / Release"
     runs-on: ubuntu-latest
     needs: build
     steps:
+      # SET ENVIRONMENT VARIABLES
       - id: set-env-var
         name: "Set environment variables"
         run: |
@@ -36,12 +42,12 @@ jobs:
         name: "Install dependencies"
         run: |
           sudo apt-get install bison gcc git make python2 -y;
-
+      
       # CHECKOUT REPOSITORY
       - id: checkout-polishedcrystal
-        name: "Checkout itsdarsh/polishedcrystal"
-        uses: actions/checkout@v3          
-
+        name: "Checkout Rangi42/polishedcrystal"
+        uses: actions/checkout@v3
+          
       # DOWNLOAD ALL BUILD ARTIFACTS
       - id: download-polishedcrystal
         name: "Download polishedcrystal"
@@ -68,16 +74,16 @@ jobs:
           name: "polishedcrystal-faithful-nortc"
           path: "./build"
       - id: download-polisheddebug
-       name: "Download polisheddebug"
-       uses: actions/download-artifact@v3
-       with:
+        name: "Download polisheddebug"
+        uses: actions/download-artifact@v3
+        with:
           name: "polisheddebug"
           path: "./build"
       - id: download-polisheddebug-faithful
         name: "Download polisheddebug-faithful"
         uses: actions/download-artifact@v3
         with:
-          name: "polisheddebug-nortc"
+          name: "polisheddebug-faithful"
           path: "./build"
       - id: download-polisheddebug-nortc
         name: "Download polisheddebug-nortc"
@@ -97,7 +103,7 @@ jobs:
         with:
           name: "polishedcrystal-savepatch"
           path: "./build"
-
+      
       # DELETE OLD RELEASE
       - name: Delete old release
         id: delete_release
@@ -106,14 +112,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ env.NIGHTLY_TAG }}
-
-      # ADVANCE NIGHTLY TAG TO MASTER
       - name: Advance nightly tag to master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git tag ${{ env.NIGHTLY_TAG }} -f
-          git push --tags -f "https://itsdarsh:$GITHUB_TOKEN@github.com/itsdarsh/polishedcrystal.git"
+          git push --tags -f "https://Rangi42:$GITHUB_TOKEN@github.com/Rangi42/polishedcrystal.git"
 
       # CREATE NEW RELEASE
       - name: Create new release
@@ -127,7 +131,7 @@ jobs:
           body: ${{ env.NIGHTLY_BODY }}
           draft: false
           prerelease: true
-
+          
       # UPLOAD POLISHED CRYSTAL ASSETS
       - name: Upload ROM
         id: upload
@@ -149,7 +153,7 @@ jobs:
           asset_path: ./build/polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}.sym
           asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}.sym
           asset_content_type: text/plain
-
+          
       # UPLOAD FAITHFUL ASSETS
       - name: Upload faithful ROM
         id: upload-faithful
@@ -193,7 +197,7 @@ jobs:
           asset_path: ./build/polishedcrystal-nortc-3.0.0-beta-${{ env.SHORT_SHA }}.sym
           asset_name: polishedcrystal-nortc-3.0.0-beta-${{ env.SHORT_SHA }}.sym
           asset_content_type: text/plain
-
+          
       # UPLOAD FAITHFUL NORTC ASSETS
       - name: Upload faithful nortc ROM
         id: upload-faithful-nortc
@@ -215,7 +219,7 @@ jobs:
           asset_path: ./build/polishedcrystal-faithful-nortc-3.0.0-beta-${{ env.SHORT_SHA }}.sym
           asset_name: polishedcrystal-faithful-nortc-3.0.0-beta-${{ env.SHORT_SHA }}.sym
           asset_content_type: text/plain
-
+          
       # UPLOAD DEBUG ASSETS
       - name: Upload debug ROM
         id: upload-debug
@@ -237,7 +241,7 @@ jobs:
           asset_path: ./build/polisheddebug-3.0.0-beta-${{ env.SHORT_SHA }}.sym
           asset_name: polisheddebug-3.0.0-beta-${{ env.SHORT_SHA }}.sym
           asset_content_type: text/plain
-
+          
       # UPLOAD FAITHFUL DEBUG ASSETS
       - name: Upload faithful debug ROM
         id: upload-faithful-debug
@@ -281,7 +285,7 @@ jobs:
           asset_path: ./build/polisheddebug-nortc-3.0.0-beta-${{ env.SHORT_SHA }}.sym
           asset_name: polisheddebug-nortc-3.0.0-beta-${{ env.SHORT_SHA }}.sym
           asset_content_type: text/plain
-
+          
       # UPLOAD FAITHFUL NORTC DEBUG ASSETS
       - name: Upload faithful nortc debug ROM
         id: upload-faithful-nortc-debug
@@ -303,7 +307,7 @@ jobs:
           asset_path: ./build/polisheddebug-faithful-nortc-3.0.0-beta-${{ env.SHORT_SHA }}.sym
           asset_name: polisheddebug-faithful-nortc-3.0.0-beta-${{ env.SHORT_SHA }}.sym
           asset_content_type: text/plain
-
+          
       # UPLOAD SAVE PATCH
       - name: Upload BSP
         id: upload-bsp

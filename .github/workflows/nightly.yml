@@ -87,8 +87,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "$PWD"
-          pushd Rangi42/polishedcrystal
+          pushd ..
           git tag ${{ env.NIGHTLY_TAG }} -f
           git push --tags -f "https://Rangi42:$GITHUB_TOKEN@github.com/Rangi42/polishedcrystal.git"
           popd

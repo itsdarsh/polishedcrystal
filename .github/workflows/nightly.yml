@@ -55,17 +55,41 @@ jobs:
         with:
           name: "polishedcrystal-faithful"
           path: "./build"
-      - id: download-polisheddebug
+      - id: download-polishedcrystal-nortc
+        name: "Download polishedcrystal-nortc"
+        uses: actions/download-artifact@v3
+        with:
+          name: "polishedcrystal-nortc"
+          path: "./build"
+      - id: download-polishedcrystal-faithful-nortc
+        name: "Download polishedcrystal-faithful-nortc"
+        uses: actions/download-artifact@v3
+        with:
+          name: "polishedcrystal-faithful-nortc"
+          path: "./build"
+        - id: download-polisheddebug
         name: "Download polisheddebug"
         uses: actions/download-artifact@v3
         with:
           name: "polisheddebug"
           path: "./build"
-      - id: download-polisheddebug-faithful
+        - id: download-polisheddebug-faithful
         name: "Download polisheddebug-faithful"
         uses: actions/download-artifact@v3
         with:
-          name: "polisheddebug-faithful"
+          name: "polisheddebug-nortc"
+          path: "./build"
+        - id: download-polisheddebug-nortc
+        name: "Download polisheddebug-nortc"
+        uses: actions/download-artifact@v3
+        with:
+          name: "polisheddebug-nortc"
+          path: "./build"
+        - id: download-polisheddebug-faithful-nortc
+        name: "Download polisheddebug-faithful-nortc"
+        uses: actions/download-artifact@v3
+        with:
+          name: "polisheddebug-faithful-nortc"
           path: "./build"
       - id: download-polishedcrystal-savepatch
         name: "Download polishedcrystal-savepatch"
@@ -90,8 +114,6 @@ jobs:
         run: |
           git tag ${{ env.NIGHTLY_TAG }} -f
           git push --tags -f "https://itsdarsh:$GITHUB_TOKEN@github.com/itsdarsh/polishedcrystal.git"
-          cd build
-          dir
 
       # CREATE NEW RELEASE
       - name: Create new release
@@ -161,7 +183,7 @@ jobs:
           asset_path: ./build/polishedcrystal-nortc-3.0.0-beta-${{ env.SHORT_SHA }}.gbc
           asset_name: polishedcrystal-nortc-3.0.0-beta-${{ env.SHORT_SHA }}.gbc
           asset_content_type: application/octet-stream
-      - name: Upload NoRTC SYM
+      - name: Upload nortc SYM
         id: upload-sym-nortc
         uses: actions/upload-release-asset@v1.0.1
         env:

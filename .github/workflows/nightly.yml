@@ -14,7 +14,7 @@ env:
   NIGHTLY_BODY: |
     This is the current Polished Crystal 3.0.0 *beta* release. The assets all have an 8-character "commit hash" at the end to identify the exact code they're built from.
 
-    The **.gbc** assets are ROMs. If you just want to play the game, download one (regular or `-faithful`) and load it in [BGB](https://bgb.bircd.org/), [mGBA](https://mgba.io/), [Gambatte](https://github.com/sinamas/gambatte), or another accurate Game Boy Color emulator. (***Do not use VBA*** or VBA-M.)
+    The **.gbc** assets are ROMs. If you just want to play the game, download one (regular or `-faithful`) and load it in [BGB](https://bgb.bircd.org/), [mGBA](https://mgba.io/), [Gambatte](https://github.com/sinamas/gambatte), or another accurate Game Boy Color emulator. (***Do not use VBA*** or VBA-M.) If your emulator or flashcart has issues with supporting a real time clock (or you desire it disabled for any other reason), download your preferred version with the `-nortc` flag.
 
     The **.sym** assets are "symbol files". They're useful for debugging, or for [discovering cheat codes](https://github.com/pret/pokecrystal/wiki/Discovering-GameShark-cheat-codes), although cheats are *not* officially supported and may cause bugs or crashes. (Do ***not*** ask the developers for cheat codes.)
 
@@ -135,7 +135,7 @@ jobs:
       # UPLOAD POLISHED CRYSTAL ASSETS
       - name: Upload ROM
         id: upload
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -145,7 +145,7 @@ jobs:
           asset_content_type: application/octet-stream
       - name: Upload SYM
         id: upload-sym
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -157,7 +157,7 @@ jobs:
       # UPLOAD FAITHFUL ASSETS
       - name: Upload faithful ROM
         id: upload-faithful
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -167,7 +167,7 @@ jobs:
           asset_content_type: application/octet-stream
       - name: Upload faithful SYM
         id: upload-faithful-sym
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -179,7 +179,7 @@ jobs:
       # UPLOAD NORTC ASSETS
       - name: Upload nortc ROM
         id: upload-nortc
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -189,7 +189,7 @@ jobs:
           asset_content_type: application/octet-stream
       - name: Upload nortc SYM
         id: upload-sym-nortc
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -201,7 +201,7 @@ jobs:
       # UPLOAD FAITHFUL NORTC ASSETS
       - name: Upload faithful nortc ROM
         id: upload-faithful-nortc
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -211,7 +211,7 @@ jobs:
           asset_content_type: application/octet-stream
       - name: Upload faithful nortc SYM
         id: upload-faithful-nortc-sym
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -223,7 +223,7 @@ jobs:
       # UPLOAD DEBUG ASSETS
       - name: Upload debug ROM
         id: upload-debug
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -233,7 +233,7 @@ jobs:
           asset_content_type: application/octet-stream
       - name: Upload debug SYM
         id: upload-debug-sym
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -245,7 +245,7 @@ jobs:
       # UPLOAD FAITHFUL DEBUG ASSETS
       - name: Upload faithful debug ROM
         id: upload-faithful-debug
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -255,7 +255,7 @@ jobs:
           asset_content_type: application/octet-stream
       - name: Upload faithful debug SYM
         id: upload-faithful-debug-sym
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -267,7 +267,7 @@ jobs:
       # UPLOAD NORTC DEBUG ASSETS
       - name: Upload nortc debug ROM
         id: upload-debug-nortc
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -277,7 +277,7 @@ jobs:
           asset_content_type: application/octet-stream
       - name: Upload nortc debug SYM
         id: upload-debug-nortc-sym
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -289,7 +289,7 @@ jobs:
       # UPLOAD FAITHFUL NORTC DEBUG ASSETS
       - name: Upload faithful nortc debug ROM
         id: upload-faithful-nortc-debug
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -299,7 +299,7 @@ jobs:
           asset_content_type: application/octet-stream
       - name: Upload faithful nortc debug SYM
         id: upload-faithful-nortc-debug-sym
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -311,7 +311,7 @@ jobs:
       # UPLOAD SAVE PATCH
       - name: Upload BSP
         id: upload-bsp
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
